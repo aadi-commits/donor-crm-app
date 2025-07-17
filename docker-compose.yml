@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: donor-postgres
+    environment:
+      POSTGRES_DB: donordb
+      POSTGRES_USER: donor
+      POSTGRES_PASSWORD: donor123
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  donor-crm-app:
+    image: donor-crm-app
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/donordb
+      SPRING_DATASOURCE_USERNAME: donor
+      SPRING_DATASOURCE_PASSWORD: donor123
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:
