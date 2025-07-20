@@ -17,7 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "donors")
+@Table(name = "donor")
 @Getter
 @Setter
 @NoArgsConstructor
